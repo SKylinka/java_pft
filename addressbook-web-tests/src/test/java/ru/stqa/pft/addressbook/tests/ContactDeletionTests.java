@@ -7,13 +7,13 @@ public class ContactDeletionTests extends TestBase {
 
 
   @Test
-  public void testUserDeletionTests() throws Exception {
+  public void testContactDeletionTests() throws Exception {
 
 
-    app.getContactHelper().selectUser();
-    app.getContactHelper().deleteSelectUser();
+    app.getContactHelper().selectContact();
+    app.getContactHelper().deleteSelectContact();
     app.getContactHelper().pushAlert();
-    app.getNavigationHelper().gotoUserPage();
+    app.getNavigationHelper().gotoContactPage();
     app.logout();
   }
 

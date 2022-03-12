@@ -1,13 +1,13 @@
 package ru.stqa.pft.addressbook.model;
 
-public class UserData {
+public class ContactData {
   private final String firstname;
   private final String lastname;
   private final String address;
   private final String email;
   private final String phone;
 
-  public UserData(String firstname, String lastname, String address, String email, String phone) {
+  public ContactData(String firstname, String lastname, String address, String email, String phone) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.address = address;
