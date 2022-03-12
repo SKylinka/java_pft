@@ -15,7 +15,7 @@ public class ApplicationManager {
   private ContactHelper contactHelper;
 
   public void init() {
-    System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
+
     wd = new ChromeDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");

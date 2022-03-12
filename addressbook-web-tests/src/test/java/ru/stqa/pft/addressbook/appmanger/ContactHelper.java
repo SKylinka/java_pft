@@ -33,4 +33,8 @@ public class ContactHelper extends HelperBase{
     click(By.name("selected[]"));
   }
 
+
+  public void initContactModification() {
+    click(By.name("css=img[alt=\"Edit\"]"));
+  }
 }
