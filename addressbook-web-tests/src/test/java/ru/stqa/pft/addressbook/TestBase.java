@@ -123,4 +123,16 @@ public class TestBase {
   protected void gotoUserPage() {
     wd.findElement(By.linkText("add new")).click();
   }
+
+  protected void pushAlert() {
+    wd.switchTo().alert().accept();
+  }
+
+  protected void deleteSelectUser() {
+    wd.findElement(By.xpath("//input[@value='Delete']")).click();
+  }
+
+  protected void selectUser() {
+    wd.findElement(By.name("selected[]")).click();
+  }
 }
