@@ -6,7 +6,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+
 public class ContactHelper extends HelperBase{
+
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -49,4 +51,27 @@ public class ContactHelper extends HelperBase{
   public void sumbitContactModification() {
     click(By.name("update"));
   }
+
+  public void createContact(ContactData contact, boolean creation) {
+    gotoContactPage();
+    fillContactForm(contact, creation);
+    submitContactCreation();
+    returnToHomePage();
+
+  }
+
+  private void returnToHomePage() {
+    click(By.linkText("home page"));
+  }
+
+  private void gotoContactPage() {
+    click(By.linkText("add new"));
+  }
+
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
+
 }
