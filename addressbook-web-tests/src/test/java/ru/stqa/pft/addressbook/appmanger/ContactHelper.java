@@ -47,8 +47,8 @@ public class ContactHelper extends HelperBase{
   }
 
 
-  public void initContactModification() {
-    click(By.xpath("//img[@alt='Edit']"));
+  public void initContactModification(int index) {
+    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
   }
 
   public void sumbitContactModification() {
@@ -84,8 +84,8 @@ public class ContactHelper extends HelperBase{
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
       String firstname = element.findElement(By.xpath("//td[3]")).getText();
       String lastname = element.findElement(By.xpath("//td[2]")).getText();
-      ContactData group = new ContactData(id, firstname, lastname, null, null,null,null );
-      contacts.add(group);
+      ContactData contact = new ContactData(id, firstname, lastname, null, null,null,null );
+      contacts.add(contact);
     }
     return contacts;
   }
