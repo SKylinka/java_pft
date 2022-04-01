@@ -20,10 +20,10 @@ public class ContactModificationTests extends TestBase{
   public void testContactModification() {
     List<ContactData> before = app.getContactHelper().getContactList();
     int index = before.size() - 1;
-    app.getNavigationHelper().toHomePage();
+    app.goTo().toHomePage();
     ContactData contact = new ContactData(before.get(index).getId(),"IMI", "FamiliI", "msk", "test@mail.ru", "89101112233", null);
     app.getContactHelper().modifyContact(index, contact);
-    app.getNavigationHelper().toHomePage();
+    app.goTo().toHomePage();
 
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
