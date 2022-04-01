@@ -11,21 +11,21 @@ public class ContactModificationTests extends TestBase{
 
   @BeforeMethod
   public void ensurePrecondition(){
-    if (! app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("Igor", "Starovoitov", "Rus", "123@mail.ru", "552597", "test1"), true);
+    if (app.contact().list().size() == 0) {
+      app.contact().create(new ContactData("Igor", "Starovoitov", "Rus", "123@mail.ru", "552597", "test1"), true);
     }
   }
 
-  @Test(enabled = false)
+  @Test
   public void testContactModification() {
-    List<ContactData> before = app.getContactHelper().getContactList();
+    List<ContactData> before = app.contact().list();
     int index = before.size() - 1;
-    app.goTo().toHomePage();
+    app.goTo().homePage();
     ContactData contact = new ContactData(before.get(index).getId(),"IMI", "FamiliI", "msk", "test@mail.ru", "89101112233", null);
-    app.getContactHelper().modifyContact(index, contact);
-    app.goTo().toHomePage();
+    app.contact().modify(index, contact);
+    app.goTo().homePage();
 
-    List<ContactData> after = app.getContactHelper().getContactList();
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size());
     before.remove(index);
     before.add(contact);
@@ -33,7 +33,7 @@ public class ContactModificationTests extends TestBase{
     before.sort(byId);
     after.sort(byId);
     Assert.assertEquals(before, after);
-    app.logout();
+
   }
 
 
