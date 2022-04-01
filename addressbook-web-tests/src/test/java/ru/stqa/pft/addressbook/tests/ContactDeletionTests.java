@@ -8,12 +8,15 @@ import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
 
-
-  @Test(enabled = false)
-  public void testContactDeletionTests() throws Exception {
+  @BeforeMethod
+  public void ensurePrecondition(){
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("Igor", "Starovoitov", "Rus", "123@mail.ru", "552597", "test1"), true);
     }
+  }
+
+  @Test(enabled = false)
+  public void testContactDeletionTests() throws Exception {
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(before.size()- 1);
     app.getContactHelper().deleteSelectContact();
