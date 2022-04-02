@@ -8,6 +8,8 @@ public class ContactData {
   private String email;
   private String phone;
   private String group;
+  private String home;
+  private String work;
 
 
   public String getFirstname() {
@@ -32,6 +34,14 @@ public class ContactData {
 
   public String getGroup() {
     return group;
+  }
+
+  public String getHome() {
+    return home;
+  }
+
+  public String getWork() {
+    return work;
   }
 
   public ContactData withId(int id) {
@@ -66,6 +76,16 @@ public class ContactData {
 
   public ContactData withGroup(String group) {
     this.group = group;
+    return this;
+  }
+
+  public ContactData withHome(String home) {
+    this.home = home;
+    return this;
+  }
+
+  public ContactData withWork(String work) {
+    this.work = work;
     return this;
   }
 
