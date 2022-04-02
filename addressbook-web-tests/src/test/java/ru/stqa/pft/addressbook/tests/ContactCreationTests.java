@@ -23,4 +23,16 @@ public class ContactCreationTests extends TestBase {
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
+
+  @Test
+  public void testBadContactCreation() throws Exception {
+    Contacts before = app.contact().all();
+    ContactData contact = new ContactData()
+            .withFirstname("Igor'").withLastname("Starovoitov").withAddress("Rus")
+            .withEmail("123@mail.ru").withPhone("552597").withGroup("test1");
+    app.contact().create(contact, true);
+    Contacts after = app.contact().all();
+    assertThat(after.size(), equalTo(before.size()));
+    assertThat(after, equalTo(before));
+  }
 }
