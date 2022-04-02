@@ -4,8 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
 
 public class GroupModificationTests extends TestBase{
@@ -34,6 +32,4 @@ public class GroupModificationTests extends TestBase{
     Assert.assertEquals(before, after);
 
   }
-
-
 }

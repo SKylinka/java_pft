@@ -3,8 +3,6 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
 
 
@@ -26,5 +24,4 @@ public class GroupCreationTests extends TestBase {
     Assert.assertEquals(before, after);
 
   }
-
 }
