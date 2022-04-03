@@ -23,13 +23,7 @@ public class ContactAddressTests extends TestBase {
   private String mergeAddress(ContactData contact) {
     return Arrays.asList(contact.getAddress())
             .stream().filter((s) -> ! s.equals(""))
-            .map(ContactAddressTests::cleaned)
             .collect(Collectors.joining("\n"));
   }
-
-  public static String cleaned(String address) {
-    return address.replaceAll("\\s","").replaceAll("[-()]","");
-  }
-
 }
 
