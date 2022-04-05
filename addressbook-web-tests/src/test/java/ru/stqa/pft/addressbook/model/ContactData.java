@@ -13,7 +13,6 @@ public class ContactData {
   private String homePhone;
   private String workPhone;
   private String allPhones;
-  private String allAddress;
   private String allEmails;
 
   public String getEmail3() {
@@ -44,17 +43,6 @@ public class ContactData {
   }
 
 
-  public String getAllAddress() {
-    return allAddress;
-  }
-
-  public ContactData withAllAddress(String allAddress) {
-    this.allAddress = allAddress;
-    return this;
-  }
-
-
-
   public String getAllPhones() {
     return allPhones;
   }
@@ -63,8 +51,6 @@ public class ContactData {
     this.allPhones = allPhones;
     return this;
   }
-
-
 
 
   public String getFirstname() {
