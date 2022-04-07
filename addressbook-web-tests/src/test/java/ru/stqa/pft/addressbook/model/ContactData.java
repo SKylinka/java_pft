@@ -65,6 +65,8 @@ public class ContactData {
     return address;
   }
 
+
+
   public String getEmail() {
     return email;
   }
