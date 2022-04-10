@@ -28,12 +28,12 @@ public class GroupCreationTests extends TestBase {
     }
     XStream xstream = new XStream();
     xstream.processAnnotations(GroupData.class);
-    List<GroupData> groups = (List<GroupData>)xstream.fromXML(xml);
+    List<GroupData> groups = (List<GroupData>) xstream.fromXML(xml);
     return groups.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
   }
 
   @DataProvider
-  public Iterator<Object[]> validGroupsFromJcon() throws IOException {
+  public Iterator<Object[]> validGroupsFromJson() throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.json")));
     String json = "";
     String line = reader.readLine();
@@ -48,7 +48,7 @@ public class GroupCreationTests extends TestBase {
 
 
 
-  @Test(dataProvider = "validGroupsFromJcon")
+  @Test(dataProvider = "validGroupsFromXml")
   public void testGroupCreation(GroupData group) throws Exception {
     app.goTo().groupPage();
     Groups before = app.group().all();

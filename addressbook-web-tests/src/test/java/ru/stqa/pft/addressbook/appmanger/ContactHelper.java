@@ -123,13 +123,14 @@ public class ContactHelper extends HelperBase{
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
+    String home2 = wd.findElement(By.name("phone2")).getAttribute("value");
     String email = wd.findElement(By.name("email")).getAttribute("value");
     String email2 = wd.findElement(By.name("email2")).getAttribute("value");
     String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     String address = wd.findElement(By.name("address")).getAttribute("value");
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname)
-            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
+            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work).withPhoneTwo(home2)
             .withEmail(email).withEmail2(email2).withEmail3(email3)
             .withAddress(address);
   }

@@ -28,12 +28,23 @@ public class ContactData {
   private String homePhone;
   @Expose
   private String workPhone;
-  @Expose
   private String allPhones;
-  @Expose
   private String allEmails;
   @Expose
+  private String phoneTwo;
+  @Expose
   private File photo;
+
+  public String getPhoneTwo() {
+    return phoneTwo;
+  }
+
+  public ContactData withPhoneTwo(String phoneTwo) {
+    this.phoneTwo = phoneTwo;
+    return this;
+  }
+
+
 
 
   public File getPhoto() {

@@ -6,7 +6,6 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 @XStreamAlias("group")
 public class GroupData {
-
   @XStreamOmitField
   private int id = Integer.MAX_VALUE;
   @Expose
@@ -15,6 +14,7 @@ public class GroupData {
   private String header;
   @Expose
   private String footer;
+
 
   public int getId() {
     return id;

@@ -43,7 +43,7 @@ public class GroupDataGenerator {
       saveAsCsv(groups, new File(file));
     } else if (format.equals("xml")) {
       saveAsXml(groups, new File(file));
-    } else if (format.equals("jcon")) {
+    } else if (format.equals("json")) {
       saveAsJson(groups, new File(file));
     } else {
       System.out.println("WTF format " + format);
@@ -61,6 +61,7 @@ public class GroupDataGenerator {
   private void saveAsXml(List<GroupData> groups, File file) throws IOException {
     XStream xstream = new XStream();
     xstream.processAnnotations(GroupData.class);
+    xstream.alias("groups", List.class);
     String xml = xstream.toXML(groups);
     Writer writer = new FileWriter(file);
     writer.write(xml);
