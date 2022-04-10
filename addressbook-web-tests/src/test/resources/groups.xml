@@ -1,4 +1,4 @@
-<groups>
+<list>
   <group>
     <name>test0</name>
     <header>header0</header>
@@ -9,4 +9,4 @@
     <header>header1</header>
     <footer>footer1</footer>
   </group>
-</groups>
+</list>
