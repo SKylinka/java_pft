@@ -6,6 +6,7 @@ import org.openqa.selenium.json.TypeToken;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -33,6 +34,7 @@ public class ContactCreationTests extends TestBase {
     }
     XStream xstream = new XStream();
     xstream.processAnnotations(ContactData.class);
+    xstream.allowTypes(new Class[]{ContactData.class});
     List<ContactData> contacts = (List<ContactData>) xstream.fromXML(xml);
     return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
   }
@@ -67,7 +69,7 @@ public class ContactCreationTests extends TestBase {
     return list.iterator();
   }
 
-  @Test(dataProvider = "validContactsFromCSV")
+  @Test(dataProvider = "validContactFromXml")
   public void testContactCreation(ContactData contact) throws Exception {
     Contacts before = app.contact().all();
     app.contact().create(contact, true);
