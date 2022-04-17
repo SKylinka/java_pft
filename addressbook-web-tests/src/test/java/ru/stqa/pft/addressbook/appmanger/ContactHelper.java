@@ -73,6 +73,10 @@ public class ContactHelper extends HelperBase{
     click(By.name("update"));
   }
 
+  public void sumbitContactAdd() {
+    click(By.name("add"));
+  }
+
   public void create(ContactData contact, boolean creation) {
     gotoContactPage();
     fillContactForm(contact, creation);
@@ -85,6 +89,13 @@ public class ContactHelper extends HelperBase{
     initContactModificationById(contact.getId());
     fillContactForm(contact, false);
     sumbitContactModification();
+    contactsCache = null;
+  }
+
+  public void addgroup(ContactData contact) {
+    initContactModificationById(contact.getId());
+
+    sumbitContactAdd();
     contactsCache = null;
   }
 
