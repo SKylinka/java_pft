@@ -7,11 +7,15 @@
     <email2>Email20@mail.ru</email2>
     <email3>Email30@mail.ru</email3>
     <mobilePhone>12340</mobilePhone>
-    <group>test0</group>
     <homePhone>1230</homePhone>
     <workPhone>120</workPhone>
     <phoneTwo>10</phoneTwo>
     <photo>src\test\resources\stru.png</photo>
+    <groups>
+      <group>
+        <name>test0</name>
+      </group>
+    </groups>
   </contact>
   <contact>
     <firstname>Firstname1</firstname>
@@ -21,11 +25,15 @@
     <email2>Email21@mail.ru</email2>
     <email3>Email31@mail.ru</email3>
     <mobilePhone>12341</mobilePhone>
-    <group>test1</group>
     <homePhone>1231</homePhone>
     <workPhone>121</workPhone>
     <phoneTwo>11</phoneTwo>
     <photo>src\test\resources\stru.png</photo>
+    <groups>
+      <group>
+        <name>test1</name>
+      </group>
+    </groups>
   </contact>
   <contact>
     <firstname>Firstname2</firstname>
@@ -35,10 +43,14 @@
     <email2>Email22@mail.ru</email2>
     <email3>Email32@mail.ru</email3>
     <mobilePhone>12342</mobilePhone>
-    <group>test2</group>
     <homePhone>1232</homePhone>
     <workPhone>122</workPhone>
     <phoneTwo>12</phoneTwo>
     <photo>src\test\resources\stru.png</photo>
+    <groups>
+      <group>
+        <name>test2</name>
+      </group>
+    </groups>
   </contact>
 </list>

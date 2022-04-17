@@ -4,8 +4,12 @@ import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
+
+
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @XStreamAlias("contact")
@@ -43,9 +47,6 @@ public class ContactData {
   @Type(type = "text")
   private String mobilePhone;
   @Expose
-  @Transient
-  private String group;
-  @Expose
   @Column(name = "home")
   @Type(type = "text")
   private String homePhone;
@@ -61,6 +62,20 @@ public class ContactData {
   @Column(name = "phone2")
   @Type(type = "text")
   private String phoneTwo;
+  @Expose
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  @Expose
+  private Set<GroupData> groups = new HashSet<GroupData>();
+
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
 
   @Override
   public String toString() {
@@ -114,10 +129,6 @@ public class ContactData {
     result = 31 * result + (phoneTwo != null ? phoneTwo.hashCode() : 0);
     return result;
   }
-
-  @Column(name = "photo")
-  @Type(type = "text")
-  private String photo;
 
   public String getPhoneTwo() {
     return phoneTwo;
@@ -199,10 +210,6 @@ public class ContactData {
     return mobilePhone;
   }
 
-  public String getGroup() {
-    return group;
-  }
-
   public String getHomePhone() {
     return homePhone;
   }
@@ -241,10 +248,6 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
 
   public ContactData withHomePhone(String home) {
     this.homePhone = home;
@@ -258,5 +261,10 @@ public class ContactData {
 
   public int getId() {
     return id;
+  }
+
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
   }
 }

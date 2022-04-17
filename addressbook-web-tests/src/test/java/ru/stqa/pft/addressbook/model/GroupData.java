@@ -5,10 +5,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("group")
 @Entity
@@ -22,6 +21,20 @@ public class GroupData {
   @Expose
   @Column(name = "group_name")
   private String name;
+
+  @Expose
+  @Column(name = "group_header")
+  @Type(type = "text")
+  private String header;
+
+  @Expose
+  @Column(name = "group_footer")
+  @Type(type = "text")
+  private String footer;
+
+  @ManyToMany(mappedBy = "groups")
+  @XStreamOmitField
+  private Set<ContactData> contacts = new HashSet<ContactData>();
 
   @Override
   public boolean equals(Object o) {
@@ -44,17 +57,6 @@ public class GroupData {
     result = 31 * result + (footer != null ? footer.hashCode() : 0);
     return result;
   }
-
-  @Expose
-  @Column(name = "group_header")
-  @Type(type = "text")
-  private String header;
-
-  @Expose
-  @Column(name = "group_footer")
-  @Type(type = "text")
-  private String footer;
-
 
   public int getId() {
     return id;
@@ -90,6 +92,10 @@ public class GroupData {
   public GroupData withFooter(String footer) {
     this.footer = footer;
     return this;
+  }
+
+  public Contacts getContacts() {
+    return new Contacts(contacts);
   }
 
   @Override

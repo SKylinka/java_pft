@@ -7,6 +7,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -74,7 +76,7 @@ public class ContactDataGenerator {
     try (Writer writer = new FileWriter(file)) {
       for (ContactData contact : contacts) {
         writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(),
-                contact.getGroup(),
+                contact.getGroups().iterator().next().getName(),
                 contact.getMobilePhone(), contact.getHomePhone(), contact.getWorkPhone(), contact.getPhoneTwo(),
                 contact.getAddress(),
                 contact.getEmail(), contact.getEmail2(), contact.getEmail3(),contact.getPhoto()));
@@ -87,12 +89,12 @@ public class ContactDataGenerator {
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData().withFirstname(String.format("Firstname%s", i))
               .withLastname(String.format("Lastname%s", i))
+              .inGroup(new GroupData().withName(String.format("test%s", i)))
               .withAddress(String.format("Address%s", i))
               .withEmail(String.format("Email%s@mail.ru", i))
               .withEmail2(String.format("Email2%s@mail.ru", i))
               .withEmail3(String.format("Email3%s@mail.ru", i))
               .withMobilePhone(String.format("1234%s", i))
-              .withGroup(String.format("test%s", i))
               .withHomePhone(String.format("123%s", i))
               .withWorkPhone(String.format("12%s", i))
               .withPhoneTwo(String.format("1%s", i))

@@ -6,6 +6,9 @@ import org.openqa.selenium.json.TypeToken;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -62,10 +65,11 @@ public class ContactCreationTests extends TestBase {
       String line = reader.readLine();
       while (line != null) {
         String[] split = line.split(";");
-        list.add(new Object[]{new ContactData().withFirstname(split[0]).withLastname(split[1]).withGroup(split[2])
-                .withMobilePhone(split[3]).withHomePhone(split[4]).withWorkPhone(split[5]).withPhoneTwo(split[6])
-                .withAddress(split[7])
-                .withEmail(split[8]).withEmail2(split[9]).withEmail3(split[10])
+        list.add(new Object[]{new ContactData().withFirstname(split[0]).withLastname(split[1])
+                .inGroup(new GroupData().withName(split[2]))
+                .withAddress(split[3])
+                .withEmail(split[4]).withEmail2(split[5]).withEmail3(split[6])
+                .withMobilePhone(split[7]).withHomePhone(split[8]).withWorkPhone(split[9]).withPhoneTwo(split[10])
                 .withPhoto(new File(split[11]))});
         line = reader.readLine();
       }
@@ -73,7 +77,7 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validContactFromXml")
+  @Test(dataProvider = "validGroupsFromJson")
   public void testContactCreation(ContactData contact) throws Exception {
     Contacts before = app.db().contacts();
     app.contact().create(contact, true);
@@ -86,11 +90,13 @@ public class ContactCreationTests extends TestBase {
 
   @Test(enabled = false)
   public void testContactCreationTrueOne() throws Exception {
+    Groups groups = app.db().groups();
     Contacts before = app.contact().all();
     File photo = new File("src/test/resources/stru.png");
     ContactData contact = new ContactData()
             .withFirstname("Igor").withLastname("Starovoitov").withAddress("Rus")
-            .withEmail("123@mail.ru").withMobilePhone("552597").withGroup("test1")
+            .withEmail("123@mail.ru").withMobilePhone("552597")
+            .inGroup(groups.iterator().next())
             .withPhoto(photo);
     app.contact().create(contact, true);
     assertThat(app.group().Count(), equalTo(before.size() + 1));
@@ -110,10 +116,13 @@ public class ContactCreationTests extends TestBase {
 
   @Test (enabled = false)
   public void testBadContactCreation() throws Exception {
-    Contacts before = app.contact().all();
+    Groups groups = app.db().groups();
+    File photo = new File("src/test/resources/stru.png");
     ContactData contact = new ContactData()
             .withFirstname("Igor'").withLastname("Starovoitov").withAddress("Rus")
-            .withEmail("123@mail.ru").withMobilePhone("552597").withGroup("test1");
+            .withEmail("123@mail.ru").withMobilePhone("552597").withPhoto(photo)
+            .inGroup(groups.iterator().next());
+    Contacts before = app.contact().all();
     app.contact().create(contact, true);
     assertThat(app.group().Count(), equalTo(before.size()));
     Contacts after = app.contact().all();
