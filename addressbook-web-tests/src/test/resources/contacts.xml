@@ -3,26 +3,42 @@
     <firstname>Firstname0</firstname>
     <lastname>Lastname0</lastname>
     <address>Address0</address>
-    <email>Email0</email>
-    <email2>Email20</email2>
-    <email3>Email30</email3>
+    <email>Email0@mail.ru</email>
+    <email2>Email20@mail.ru</email2>
+    <email3>Email30@mail.ru</email3>
     <mobilePhone>12340</mobilePhone>
     <group>test0</group>
     <homePhone>1230</homePhone>
     <workPhone>120</workPhone>
     <phoneTwo>10</phoneTwo>
+    <photo>src\test\resources\stru.png</photo>
   </contact>
   <contact>
     <firstname>Firstname1</firstname>
     <lastname>Lastname1</lastname>
     <address>Address1</address>
-    <email>Email1</email>
-    <email2>Email21</email2>
-    <email3>Email31</email3>
+    <email>Email1@mail.ru</email>
+    <email2>Email21@mail.ru</email2>
+    <email3>Email31@mail.ru</email3>
     <mobilePhone>12341</mobilePhone>
     <group>test1</group>
     <homePhone>1231</homePhone>
     <workPhone>121</workPhone>
     <phoneTwo>11</phoneTwo>
+    <photo>src\test\resources\stru.png</photo>
+  </contact>
+  <contact>
+    <firstname>Firstname2</firstname>
+    <lastname>Lastname2</lastname>
+    <address>Address2</address>
+    <email>Email2@mail.ru</email>
+    <email2>Email22@mail.ru</email2>
+    <email3>Email32@mail.ru</email3>
+    <mobilePhone>12342</mobilePhone>
+    <group>test2</group>
+    <homePhone>1232</homePhone>
+    <workPhone>122</workPhone>
+    <phoneTwo>12</phoneTwo>
+    <photo>src\test\resources\stru.png</photo>
   </contact>
 </list>

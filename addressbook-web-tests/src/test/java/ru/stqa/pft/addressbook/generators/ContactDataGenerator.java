@@ -24,6 +24,9 @@ public class ContactDataGenerator {
   @Parameter(names = "-d", description = "File format" )
   public String  format;
 
+  //Пример заполнения -f src/test/resources/contacts.xml -c 3 -d xml
+  //Рабочая директория D:\java_pft\addressbook-web-tests
+
   public static void main(String [] args) throws IOException {
     ContactDataGenerator generator = new ContactDataGenerator();
     JCommander jCommander = new JCommander(generator);
@@ -70,11 +73,11 @@ public class ContactDataGenerator {
     System.out.println(new File(".").getAbsolutePath());
     try (Writer writer = new FileWriter(file)) {
       for (ContactData contact : contacts) {
-        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(),
+        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(),
                 contact.getGroup(),
                 contact.getMobilePhone(), contact.getHomePhone(), contact.getWorkPhone(), contact.getPhoneTwo(),
                 contact.getAddress(),
-                contact.getEmail(), contact.getEmail2(), contact.getEmail3()));
+                contact.getEmail(), contact.getEmail2(), contact.getEmail3(),contact.getPhoto()));
       }
     }
   }
@@ -92,7 +95,8 @@ public class ContactDataGenerator {
               .withGroup(String.format("test%s", i))
               .withHomePhone(String.format("123%s", i))
               .withWorkPhone(String.format("12%s", i))
-              .withPhoneTwo(String.format("1%s", i)));
+              .withPhoneTwo(String.format("1%s", i))
+              .withPhoto(new File("src/test/resources/stru.png")));
     }
     return contacts;
   }

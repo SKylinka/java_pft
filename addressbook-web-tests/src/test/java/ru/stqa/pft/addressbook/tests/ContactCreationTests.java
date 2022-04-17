@@ -65,7 +65,8 @@ public class ContactCreationTests extends TestBase {
         list.add(new Object[]{new ContactData().withFirstname(split[0]).withLastname(split[1]).withGroup(split[2])
                 .withMobilePhone(split[3]).withHomePhone(split[4]).withWorkPhone(split[5]).withPhoneTwo(split[6])
                 .withAddress(split[7])
-                .withEmail(split[8]).withEmail2(split[9]).withEmail3(split[10])});
+                .withEmail(split[8]).withEmail2(split[9]).withEmail3(split[10])
+                .withPhoto(new File(split[11]))});
         line = reader.readLine();
       }
       return list.iterator();
@@ -74,10 +75,10 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactFromXml")
   public void testContactCreation(ContactData contact) throws Exception {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     app.contact().create(contact, true);
     assertThat(app.group().Count(), equalTo(before.size() + 1));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
