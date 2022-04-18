@@ -1,28 +1,28 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
 
-public class ContactAddInGroup extends TestBase{
+public class ContactAddInGroupTests extends TestBase{
 
   @BeforeMethod
   public void ensurePrecondition(){
-    Groups groups = app.db().groups();
-    if (app.db().groups().size() == 0) {
+     if (app.db().groups().size() == 0) {
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test1"));
     }
     if (app.contact().all().size() == 0) {
+      app.goTo().homePage();
+      Groups groups = app.db().groups();
       app.contact().create(new ContactData()
                       .withFirstname("Igor").withLastname("Starovoitov").withAddress("Rus")
                       .withEmail("123@mail.ru").withEmail2("321@mail.ru").withEmail3("444@mail.ru")
@@ -35,15 +35,10 @@ public class ContactAddInGroup extends TestBase{
 
   @Test
   public void testContactAddInGroup() {
-    Contacts before = app.db().contacts();
-    ContactData addContact = before.iterator().next();
-    app.goTo().homePage();
-    ContactData contact = new ContactData();
-    app.contact().addgroup(contact);
-    app.goTo().homePage();
-    assertEquals(app.contact().Count(), before.size());
-    Contacts after = app.db().contacts();
-    assertThat(after, CoreMatchers.equalTo(before.without(addContact).withAdded(contact)));
+    ContactData contact = app.db().contacts().iterator().next();
+    GroupData group = app.db().groups().iterator().next();
+    app.contact().contactInGroup(contact,group);
+    assertThat(app.db().getContactInGroup(contact.getId()).getGroups().contains(group), equalTo(true));
     verifyContactListInUI();
   }
 }

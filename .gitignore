@@ -14,3 +14,11 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
 *.log
+addressbook-web-tests/.idea/compiler.xml
+addressbook-web-tests/.idea/workspace.xml
+addressbook-web-tests/.idea/compiler.xml
+addressbook-web-tests/.idea/gradle.xml
+addressbook-web-tests/.idea/jarRepositories.xml
+addressbook-web-tests/.idea/misc.xml
+addressbook-web-tests/.idea/uiDesigner.xml
+addressbook-web-tests/.idea/vcs.xml
