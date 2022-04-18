@@ -11,11 +11,7 @@
     <workPhone>120</workPhone>
     <phoneTwo>10</phoneTwo>
     <photo>src\test\resources\stru.png</photo>
-    <groups>
-      <group>
-        <name>test0</name>
-      </group>
-    </groups>
+    <groups/>
   </contact>
   <contact>
     <firstname>Firstname1</firstname>
@@ -29,11 +25,7 @@
     <workPhone>121</workPhone>
     <phoneTwo>11</phoneTwo>
     <photo>src\test\resources\stru.png</photo>
-    <groups>
-      <group>
-        <name>test1</name>
-      </group>
-    </groups>
+    <groups/>
   </contact>
   <contact>
     <firstname>Firstname2</firstname>
@@ -47,10 +39,6 @@
     <workPhone>122</workPhone>
     <phoneTwo>12</phoneTwo>
     <photo>src\test\resources\stru.png</photo>
-    <groups>
-      <group>
-        <name>test2</name>
-      </group>
-    </groups>
+    <groups/>
   </contact>
 </list>

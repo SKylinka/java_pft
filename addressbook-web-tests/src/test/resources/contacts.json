@@ -9,7 +9,8 @@
     "mobilePhone": "12340",
     "homePhone": "1230",
     "workPhone": "120",
-    "phoneTwo": "10"
+    "phoneTwo": "10",
+    "photo": "src\\test\\resources\\stru.png"
   },
   {
     "firstname": "Firstname1",
@@ -21,7 +22,8 @@
     "mobilePhone": "12341",
     "homePhone": "1231",
     "workPhone": "121",
-    "phoneTwo": "11"
+    "phoneTwo": "11",
+    "photo": "src\\test\\resources\\stru.png"
   },
   {
     "firstname": "Firstname2",
@@ -33,6 +35,7 @@
     "mobilePhone": "12342",
     "homePhone": "1232",
     "workPhone": "122",
-    "phoneTwo": "12"
+    "phoneTwo": "12",
+    "photo": "src\\test\\resources\\stru.png"
   }
 ]
