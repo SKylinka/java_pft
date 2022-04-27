@@ -7,7 +7,6 @@ import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.appmanager.HttpSession;
 import ru.stqa.pft.mantis.model.MailMessage;
 import ru.stqa.pft.mantis.model.UserData;
-
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
@@ -44,7 +43,7 @@ public class ResetPasswordUsersTests extends TestBase {
     return regex.getText(mailMessage.text);
   }
 
-  @AfterMethod(alwaysRun = true)
+  @AfterMethod
   public void stopMailServer(){
     app.mail().stop();
   }

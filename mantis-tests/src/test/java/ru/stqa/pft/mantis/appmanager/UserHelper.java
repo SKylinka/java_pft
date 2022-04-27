@@ -10,32 +10,32 @@ public class UserHelper extends HelperBase {
   }
 
   public void selectUserFromResetPassword(int id) throws InterruptedException {
-    startLogin(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
+    login(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
     goToControl();
-    goToManageUser();
-    goToSelectUser(id);
+    goToControlUser();
+    selectUser(id);
     resetPassword();
   }
 
-  public void startLogin(String username, String password) throws InterruptedException {
+  public void login(String username, String password) throws InterruptedException {
     wd.get(app.getProperty("web.baseURL") + "/login.php");
     type(By.name("username"), username);
-    click(By.cssSelector("input[type='submit']"));
+    click(By.xpath("//*[@id=\"username\"]"));
     type(By.name("password"), password);
-    click(By.cssSelector("input[type='submit']"));
+    click(By.xpath("//*[@id=\"password\"]"));
   }
 
   public void goToControl() throws InterruptedException {
     click(By.xpath("//*[@id=\"menu-items\"]/li[6]/a"));
-    Thread.sleep(2000);
+    Thread.sleep(2222);
   }
 
-  public void goToManageUser() {
+  public void goToControlUser() {
     click(By.xpath("//*[@id=\"manage-menu\"]/ul/li[1]/a"));
   }
 
-  public void goToSelectUser(int id) {
-    click(By.cssSelector(String.format("a[href='manage_user_edit_page.php?user_id=%s']",id)));
+  public void selectUser(int id) {
+    click(By.xpath(String.format("/html/body/table[3]/tbody/tr/td/a[@href ='manage_user_edit_page.php?user_id=%s']",id)));
   }
 
   public void resetPassword() {

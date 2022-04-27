@@ -5,7 +5,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,7 +15,6 @@ import java.util.Properties;
 public class ApplicationManager {
   private final Properties properties;
   private WebDriver wd;
-
   private String browser;
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
@@ -74,7 +72,6 @@ public class ApplicationManager {
     }
     return ftp;
   }
-
 
   public WebDriver getDriver() {
     if (wd == null) {
