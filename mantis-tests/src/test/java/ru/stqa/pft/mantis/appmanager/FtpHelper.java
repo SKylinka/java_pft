@@ -1,8 +1,6 @@
 package ru.stqa.pft.mantis.appmanager;
 
-
 import org.apache.commons.net.ftp.FTPClient;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
