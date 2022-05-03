@@ -1,4 +1,4 @@
-package ru.stqa.pft.rest;
+package ru.stqa.pft.rest.tests;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -7,26 +7,15 @@ import com.google.gson.reflect.TypeToken;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
-import org.testng.annotations.Test;
-
+import org.testng.SkipException;
+import ru.stqa.pft.rest.model.Issue;
 import java.io.IOException;
 import java.util.Set;
 
-import static org.testng.Assert.assertEquals;
 
-public class RestTest {
+public class TestBase {
 
-  @Test
-  public void testCreateIssue() throws IOException {
-    Set<Issue> oldIssue = getIssues();
-    Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
-    int issueId = createIssue(newIssue);
-    Set<Issue> newIssues = getIssues();
-    oldIssue.add(newIssue.withId(issueId));
-    assertEquals(newIssues, oldIssue);
-  }
-
-  private Set<Issue> getIssues() throws IOException {
+  public Set<Issue> getIssues() throws IOException {
     String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues.json"))
             .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
@@ -34,11 +23,11 @@ public class RestTest {
     return new Gson().fromJson(issues,new TypeToken<Set<Issue>>(){}.getType());
   }
 
-  private Executor getExecutor() {
+  public Executor getExecutor() {
     return Executor.newInstance().auth("288f44776e7bec4bf44fdfeb1e646490","");
   }
 
-  private int createIssue(Issue newIssue) throws IOException {
+  public int createIssue(Issue newIssue) throws IOException {
     String json = getExecutor().execute(Request.Post("https://bugify.stqa.ru/api/issues.json")
                     .bodyForm(new BasicNameValuePair("subject", newIssue.getSubject()),
                             new BasicNameValuePair("description",newIssue.getDescription())))
@@ -47,4 +36,24 @@ public class RestTest {
     return parsed.getAsJsonObject().get("issue_id").getAsInt();
   }
 
+  public String getIssueInfo(int issueId) throws IOException {
+    String json = getExecutor().execute(Request.Get(String.format("http://bugify.stqa.ru/api/issues/%s.json", issueId)))
+            .returnContent().asString();
+    JsonElement parsed = new JsonParser().parse(json);
+    return parsed.getAsJsonObject().get("issues").getAsJsonArray().get(0)
+            .getAsJsonObject().get("state_name").getAsString();
+  }
+
+  public boolean isIssueOpen(int issueId) throws IOException {
+    if (getIssueInfo(issueId).equals("Closed")) {
+      return false;
+    }
+    return true;
+  }
+
+  public void skipIfNotFixed(int issueId) throws IOException {
+    if (isIssueOpen(issueId)) {
+      throw new SkipException("Ignored because of issue " + issueId);
+    }
+  }
 }
