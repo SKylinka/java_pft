@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.appmanger;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -51,6 +52,8 @@ public class ApplicationManager {
       } else {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName(browser);
+        //capabilities.setPlatform(Platform.WIN10);
+        capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "WIN10")));
         wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
       }
     wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
